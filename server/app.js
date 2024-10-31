@@ -89,7 +89,7 @@ async function getdb() {
 // Mount the static resource dir
     app.use(express.static(staticDir));
     app.use(express.static(path.join(__dirname, 'node_modules')));
-    app.use('/dist', express.static(staticDir));
+    // app.use('/dist', express.static(staticDir));
 // Show nicer errors when in dev mode
     if (devEnv) app.use(errorHandler());
 
