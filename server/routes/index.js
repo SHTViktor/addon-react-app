@@ -33,7 +33,7 @@ module.exports = function (app, addon) {
 
 
     app.get('/main-page', addon.authenticate(), async function (req, res) {
-        res.sendFile(path.join(__dirname,'..', 'views', 'main-page.html'))
+        res.sendFile(path.join(__dirname,'..', '..', 'public', 'index.html'))
     });
 
     app.post('/main-page', addon.checkValidToken(), async function (req, res) {
