@@ -57,9 +57,8 @@ async function getdb() {
     var path = require('path');
     var os = require('os');
 
-// Anything in ./public is served up as static content
+// Anything in ./dist is served up as static content
     var staticDir = path.join(__dirname, '..', 'dist');
-// Anything in ./views are HBS templates
 // Your routes live here; this is the C in MVC
 // Bootstrap Express
     global.allowUpload = true;
