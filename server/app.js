@@ -58,7 +58,8 @@ async function getdb() {
     var os = require('os');
 
 // Anything in ./dist is served up as static content
-    var staticDir = path.join(__dirname, '..', 'dist');
+    var staticDir = path.join(__dirname, '..');
+    var viewsDir = path.join(__dirname, '..', 'dist');
 // Your routes live here; this is the C in MVC
 // Bootstrap Express
     global.allowUpload = true;
@@ -89,7 +90,8 @@ async function getdb() {
 // Mount the static resource dir
     app.use(express.static(staticDir));
     app.use(express.static(path.join(__dirname, 'node_modules')));
-    // app.use('/dist', express.static(staticDir));
+    app.use('/dist', express.static(viewsDir))
+
 // Show nicer errors when in dev mode
     if (devEnv) app.use(errorHandler());
 
