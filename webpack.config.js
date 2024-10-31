@@ -1,6 +1,6 @@
 const path = require( 'path' );
 const HTMLWebpackPlugin = require( 'html-webpack-plugin' );
-const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 
 module.exports = {
@@ -23,32 +23,31 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [ 'babel-loader' ]
             },
+            {
+                test: /\.css$/,
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+            }
         ]
     },
 
     plugins: [
 
+        new MiniCssExtractPlugin( {
+            filename: 'build/styles.css'
+        } ),
+
         new HTMLWebpackPlugin( {
             filename: 'index.html',
-            template: path.resolve( __dirname, 'src/index.html' ),
+            template: path.resolve( __dirname, 'public/index.html' ),
             minify: false,
         } ),
 
-        new CopyWebpackPlugin( {
-            patterns: [
-                {
-                    from: path.resolve( __dirname, 'src/assets' ),
-                    to: path.resolve( __dirname, 'dist/assets' )
-                }
-            ]
-        } ),
     ],
 
     resolve: {
         extensions: [ '.js', '.jsx', '.scss' ],
     },
 
-    // webpack оптимизации
     optimization: {
         splitChunks: {
             cacheGroups: {
