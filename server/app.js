@@ -57,8 +57,8 @@ async function getdb() {
     var path = require('path');
     var os = require('os');
 
-// Anything in ./dist is served up as static content
-    var staticDir = path.join(__dirname, '..');
+// Anything in ./public is served up as static content
+    var staticDir = path.join(__dirname, 'public');
     var viewsDir = path.join(__dirname, '..', 'dist');
 // Your routes live here; this is the C in MVC
 // Bootstrap Express
