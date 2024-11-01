@@ -35,7 +35,7 @@ app.use(session({
 let MongoClient = require('mongodb').MongoClient;
 getdb();
 
-global.databaseName = "test-task-db";
+global.databaseName = "addon_db";
 global.JiraAccountInfoStore = "jira";
 
 async function getdb() {
