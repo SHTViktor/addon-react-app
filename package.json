@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npx webpack --mode development --stats-children && node server/app.js",
+    "start": "node server/app.js",
     "build": "npx webpack --mode development --stats-children"
   },
   "engines": {
