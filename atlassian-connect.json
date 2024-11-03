@@ -7,10 +7,10 @@
     "name": "SaaSJet",
     "url": "https://saasjet.com"
   },
-  "baseUrl": "https://pure-anchorage-85055-97b20cdfcb80.herokuapp.com/",
+  "baseUrl": "https://371a-193-19-254-42.ngrok-free.app/",
   "links": {
-    "self": "https://pure-anchorage-85055-97b20cdfcb80.herokuapp.com/atlassian-connect.json",
-    "homepage": "https://pure-anchorage-85055-97b20cdfcb80.herokuapp.com/atlassian-connect.json"
+    "self": "https://371a-193-19-254-42.ngrok-free.app/atlassian-connect.json",
+    "homepage": "https://371a-193-19-254-42.ngrok-free.app/atlassian-connect.json"
   },
   "authentication": {
     "type": "jwt"
