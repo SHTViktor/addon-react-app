@@ -1,11 +1,15 @@
 import React from 'react';
 
-import '../styles/App.css';
+import '../styles/index.css';
+import Selector from "./Selector";
+import Table from "./Table";
 
 function App() {
+
   return (
     <div className="App">
-     <h1>React Working!</h1>
+        <Selector />
+        <Table />
     </div>
   );
 }
