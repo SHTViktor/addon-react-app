@@ -6,12 +6,12 @@ import Table from "./Table";
 
 function App() {
 
-  return (
-    <div className="App">
-        <Selector />
-        <Table />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Selector />
+            <Table />
+        </div>
+    );
 }
 
 export default App;
