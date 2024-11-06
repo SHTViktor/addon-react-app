@@ -4,20 +4,18 @@ module.exports = function (app, addon) {
 
     //fires after addon installation
     app.all('/installed', async function (req, res, next) {
-        console.log("installation...")
-        global.database.collection(global.JiraAccountInfoStore).findOne({"installed.clientKey": req.body.clientKey}, function (err, result) {
-            if (err) console.log(err);
+        try {
+            const result = await global.database.collection(global.JiraAccountInfoStore).findOne({"installed.clientKey": req.body.clientKey});
             if (!result) {
-                global.database.collection(global.JiraAccountInfoStore).insertOne(req.body, async (err, res) => {
-                    if (err) throw err;
-                    next();
-                });
+                await global.database.collection(global.JiraAccountInfoStore).insertOne(req.body);
             } else {
-                global.database.collection(global.JiraAccountInfoStore).updateOne({"installed.clientKey": req.body.clientKey}, {$set: req.body}, function (err, res) {
-                    next();
-                });
+                await global.database.collection(global.JiraAccountInfoStore).updateOne({"installed.clientKey": req.body.clientKey}, {$set: req.body});
             }
-        });
+            next();
+        } catch (err) {
+            console.log(err);
+            next(err);
+        }
     });
 
     app.get('/', function (req, res) {
