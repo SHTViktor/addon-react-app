@@ -35,6 +35,29 @@ module.exports = function (app, addon) {
         }
     });
 
+    app.get('/api/filters/:filterID', async function (req, res) {
+
+        const filterID = req.params.filterID;
+
+        try {
+            const response = await fetch(`${jiraDomain}/rest/api/3/filter/${filterID}`, {
+                method: 'GET',
+                headers: headers
+            });
+
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch filters');
+            }
+
+            const data = await response.json();
+            res.json(data);
+        } catch (error) {
+            console.error('Error fetching filters:', error);
+            res.status(500).send('Error fetching filters');
+        }
+    });
+
     app.get('/api/boardConfig', async function (req, res) {
 
         try {
@@ -56,9 +79,15 @@ module.exports = function (app, addon) {
     });
 
     app.get('/api/search', async function (req, res) {
+        const { selectedFilterJQL } = req.query;
+
+        // Якщо параметр є, будуємо URL з фільтром
+        const url = selectedFilterJQL
+            ? `${jiraDomain}/rest/api/3/search?jql=${encodeURIComponent(selectedFilterJQL)}`
+            : `${jiraDomain}/rest/api/3/search`;
 
         try {
-            const response = await fetch(`${jiraDomain}/rest/api/3/search`, {
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: headers
             });
