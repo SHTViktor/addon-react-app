@@ -1,7 +1,8 @@
 const path = require( 'path' );
 const HTMLWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const Dotenv = require( 'dotenv-webpack' )
+const Dotenv = require( 'dotenv-webpack' );
+const { DefinePlugin } = require('webpack');
 
 
 module.exports = {
@@ -43,7 +44,13 @@ module.exports = {
             minify: false,
         } ),
 
-        new Dotenv()
+        new Dotenv(),
+
+        new DefinePlugin({
+            'process.env.REACT_APP_JIRA_DOMAIN': JSON.stringify(process.env.REACT_APP_JIRA_DOMAIN),
+            'process.env.REACT_APP_JIRA_API_TOKEN': JSON.stringify(process.env.REACT_APP_JIRA_API_TOKEN),
+            'process.env.REACT_APP_EMAIL': JSON.stringify(process.env.REACT_APP_EMAIL),
+        }),
 
     ],
 
