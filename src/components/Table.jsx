@@ -44,7 +44,7 @@ export default function Table(props) {
                 return (
                     <td key={statusIndex}>
                         {taskCount > 0 ? (
-                            <a href={link} target="_blank" rel="noopener noreferrer">
+                            <a href={link} target="_blank">
                                 {taskCount}
                             </a>
                         ) : (
