@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 
 import '../styles/index.css';
 
-export default function Table() {
+export default function Table(props) {
 
     const jiraDomain = process.env.REACT_APP_JIRA_DOMAIN;
 
-    const [issues, setIssues] = useState([]);
-    const [statuses, setStatuses] = useState([]);
+    const issues = props.issues;
+    const setIssues = props.setIssues;
+
+    const statuses = props.statuses;
+    const setStatuses = props.setStatuses;
+
+    const selectedFilter = props.selectedFilter;
+    const selectedFilterJQL = props.selectedFilterJQL;
 
     const statusOptions = statuses.map((status, index) => (
         <th key={index}>{status.name}</th>
@@ -77,8 +83,12 @@ export default function Table() {
 
     useEffect(() => {
         async function fetchJiraIssues() {
+            const url = selectedFilterJQL
+                ? `/api/search?selectedFilterJQL=${encodeURIComponent(selectedFilterJQL)}`
+                : `/api/search`;
+
             try {
-                const response = await fetch(`/api/search`, {
+                const response = await fetch(url, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json'
@@ -98,7 +108,7 @@ export default function Table() {
         }
 
         fetchJiraIssues();
-    }, []);
+    }, [selectedFilter, selectedFilterJQL]);
 
     return (
         <div>
